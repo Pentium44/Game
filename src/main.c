@@ -88,6 +88,7 @@ void cleanup()
 	SDL_Quit();
 }
 
+Animation dirtAnim;
 
 int main(int argc, char *argv[])
 {
@@ -96,38 +97,36 @@ int main(int argc, char *argv[])
 	
 	/* Start up SDL */
 	
-	init("Parallel Realities Tutorial 7");
+	init("Some Game");
 	
 	/* Call the cleanup function when the program exits */
-	
 	atexit(cleanup);
-	
 	go = 1;
 	
 	/* Load all the sprites */
-	
 	loadAllSprites();
 	
 	/* Load all the sounds */
-	
 	loadAllSounds();
 	
-	/* Load the font */
+	/* Load animations */
+	loadAnimation("gfx/anim/dirt.dat", &dirtAnim);  
 	
+	/* Load the font */
 	game.font = loadFont("font/blackWolf.ttf", 16);
 	
 	/* Intialise the player */
-	
 	initPlayer();
 	
-	/* A a bunch of UFOs */
-	
+	/* These will be rendered with a map generator */
+	/*
 	addNPC(500, 50);
 	addNPC(500, 100);
 	addNPC(500, 150);
 	addNPC(500, 200);
 	addNPC(500, 250);
 	addNPC(500, 300);
+	*/
 	
 	/* Loop indefinitely for messages */
 	

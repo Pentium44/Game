@@ -236,3 +236,48 @@ void moveNPC(void)
 {
 	/* Do nothing, just sit there */
 }
+
+/* Map functions */
+
+Animation dirtAnim;
+
+void drawMapChunk(int x, int y)
+{
+	int i = getFreeEntity();
+	
+	if (i == -1)
+	{
+		printf("Couldn't get a free slot for a dirt!\n");
+		
+		return;
+	}
+	
+	entity[i].x = x;
+	entity[i].y = y;
+	entity[i].sprite = getSprite(DIRT_SPRITE);
+	
+	drawImage(entity[i].sprite, entity[i].x, entity[i].y);
+}
+
+void drawMap() {
+	int ix;
+	int iy;
+	
+	ix = 32;
+	iy = 32;
+	while(1)
+	{
+		if(ix > 600) {
+			iy = iy + 32;
+			ix = 32;
+		}
+	
+		if(iy > 480) {
+			break;
+		}
+		
+		ix = ix + 32;
+		
+		drawMapChunk(ix, iy);		
+	}
+}

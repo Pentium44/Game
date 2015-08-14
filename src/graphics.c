@@ -1,5 +1,6 @@
 #include "structs.h"
 #include "graphics.h"
+#include "draw.h"
 
 Sprite sprite[MAX_SPRITES];
 Game game;
@@ -106,7 +107,107 @@ void freeSprites()
 
 void loadAllSprites()
 {
-	loadSprite(PLAYER_SPRITE, "gfx/firefly.png");
+	loadSprite(PLAYER_SPRITE, "gfx/player.png");
 	loadSprite(BULLET_SPRITE, "gfx/bullet.png");
-	loadSprite(UFO_SPRITE, "gfx/enemy.png");
+	loadSprite(DIRT_SPRITE, "gfx/dirt.png");
+	/*loadSprite(UFO_SPRITE, "gfx/enemy.png");*/
+}
+
+/* Animations */
+
+void loadAnimation(char *name, Animation *anim)  
+{  
+    /* Load up the data file that describes the animation */  
+      
+    int i;  
+    FILE *fp = fopen(name, "rb");  
+    char frameName[20];  
+      
+    if (fp == NULL)  
+    {  
+        printf("Failed to load animation file %s\n", name);  
+          
+        exit(1);  
+    }  
+      
+    /* Read the frame count */  
+      
+    fscanf(fp, "%d", &anim->frameCount);  
+      
+    /* Allocate space for the animation */  
+      
+    anim->frame = (SDL_Surface **)malloc(anim->frameCount * sizeof(SDL_Surface *));  
+      
+    if (anim->frame == NULL)  
+    {  
+        printf("Ran out of memory when creating the animation for %s\n", name);  
+          
+        exit(1);  
+    }  
+      
+    /* Now load up each frame */  
+      
+    for (i=0;i<anim->frameCount;i++)  
+    {  
+        fscanf(fp, "%s", frameName);  
+          
+        anim->frame[i] = loadImage(frameName);  
+          
+        if (anim->frame[i] == NULL)  
+        {  
+            printf("Failed to load animation frame %s\n", frameName);  
+              
+            exit(1);  
+        }  
+    }  
+      
+    /* Set the initial frame index to 0 */  
+      
+    anim->frameIndex = 0;  
+      
+    /* Set the animation counter */  
+      
+    anim->counter = ANIM_SPEED;  
+} 
+
+void freeAnimation(Animation *anim)  
+{  
+    int i;  
+      
+    /* Loop through each of the frames and free it */  
+  
+    if (anim->frame != NULL)  
+    {  
+        for (i=0;i<anim->frameCount;i++)  
+        {  
+            if (anim->frame[i] != NULL)  
+            {  
+                SDL_FreeSurface(anim->frame[i]);  
+            }  
+        }  
+          
+        free(anim->frame);  
+    }  
+} 
+
+void doAnimation(Animation *anim)  
+{  
+    anim->counter--;  
+      
+    if (anim->counter <= 0)  
+    {  
+        anim->frameIndex++;  
+          
+        if (anim->frameIndex == anim->frameCount)  
+        {  
+            anim->frameIndex = 0;  
+        }  
+          
+        anim->counter = ANIM_SPEED;  
+    }  
+}
+
+void drawAnimation(Animation *anim, int x, int y)  
+{  
+    drawImage(anim->frame[anim->frameIndex], x, y);  
 }

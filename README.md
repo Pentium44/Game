@@ -2,7 +2,7 @@ Simple type of multi-directional 2D game.
 To-do:
   * Multi-directional player sprite
   * Player vs wall collision detection (partially done)
-  * Remove those nasty textures
+  * Remove those nasty textures (finished)
   * Wall collision sounds
   * Networking support
   * Chat window, speech.

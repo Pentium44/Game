@@ -30,3 +30,9 @@ typedef struct Control
 {
 	int up, down, left, right, fire;
 } Control;
+
+typedef struct Animation  
+{  
+	int frameCount, frameIndex, counter;  
+	SDL_Surface **frame;  
+} Animation;  
