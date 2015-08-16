@@ -6,9 +6,12 @@ void drawStandardEntity();
 void initPlayer();
 void doPlayer();
 void drawPlayer();
-void addBullet(int, int);
-void addNPC(int x, int y);
-void moveNPC(void);
 /* Map gen */
 void drawMapChunk(int x, int y);
 void drawMap();
+/* other non-standard entities */
+void addBullet(int, int);
+void addNPC(int x, int y);
+void moveNPC(void);
+/* null stuffs */
+//void nullAction(void);

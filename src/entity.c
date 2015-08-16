@@ -9,7 +9,6 @@ Entity *self, entity[MAX_ENTITIES];
 
 SDL_Surface *getSprite(int index);
 
-
 /*
 
    Entity functions, used by all entities. Players, walls, NPCs (Future stuffs)
@@ -165,6 +164,53 @@ void drawPlayer()
 	drawImage(player.sprite, player.x, player.y);
 }
 
+Animation dirtAnim;
+
+/* Map functions */
+
+static void nullAction(void);
+
+void drawMapChunk(int x, int y)
+{
+	int i = getFreeEntity();
+	
+	if (i == -1)
+	{
+		printf("Couldn't get a free slot for a dirt!\n");
+		
+		return;
+	}
+	
+	entity[i].x = x;
+	entity[i].y = y;
+	entity[i].action = &nullAction;
+	entity[i].draw = &drawStandardEntity;
+	entity[i].sprite = getSprite(DIRT_SPRITE);
+	
+}
+
+void drawMap() {
+	int ix;
+	int iy;
+	
+	ix = 0;
+	iy = 0;
+	while(1)
+	{
+		if(ix >= 800) {
+			iy = iy + 32;
+			ix = 0;
+		}
+	
+		if(iy >= 480) {
+			break;
+		}
+		
+		drawMapChunk(ix, iy);		
+		ix = ix + 32;
+	}
+}
+
 /*
 
   Bullet entity functions
@@ -237,47 +283,8 @@ void moveNPC(void)
 	/* Do nothing, just sit there */
 }
 
-/* Map functions */
+/* null action; for map generation */
 
-Animation dirtAnim;
-
-void drawMapChunk(int x, int y)
-{
-	int i = getFreeEntity();
-	
-	if (i == -1)
-	{
-		printf("Couldn't get a free slot for a dirt!\n");
-		
-		return;
-	}
-	
-	entity[i].x = x;
-	entity[i].y = y;
-	entity[i].sprite = getSprite(DIRT_SPRITE);
-	
-	drawImage(entity[i].sprite, entity[i].x, entity[i].y);
-}
-
-void drawMap() {
-	int ix;
-	int iy;
-	
-	ix = 32;
-	iy = 32;
-	while(1)
-	{
-		if(ix > 600) {
-			iy = iy + 32;
-			ix = 32;
-		}
-	
-		if(iy > 480) {
-			break;
-		}
-		
-		ix = ix + 32;
-		
-		drawMapChunk(ix, iy);		
-	}
+void nullAction(void) {
+	// do nothing
 }

@@ -2,9 +2,9 @@
 #include "draw.h"
 #include "entity.h"
 #include "font.h"
+#include "graphics.h"
 
 Game game;
-Entity *self, chunk[MAX_ENTITIES];
 
 void draw()
 {
@@ -13,18 +13,16 @@ void draw()
 	/* Blank the screen */
 	SDL_FillRect(game.screen, NULL, 0);
 	
+	/* Draw the entities; before anything
+	   so everything is on top of map */
+	drawEntities();
+	
 	/* Draw the score */
 	sprintf(text, "SCORE: %05d", game.score);
 	drawString(text, 100, 10, game.font, 1, 0);
 	
 	/* Draw the player */
 	drawPlayer();
-	
-	/* Draw map */
-	drawMap();
-	
-	/* Draw the entities */
-	drawEntities();
 	
 	/* Update the buffer */
 	SDL_Flip(game.screen);

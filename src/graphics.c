@@ -95,7 +95,6 @@ void freeSprites()
 	int i;
 	
 	/* Loop through the sprite bank and clear the images */
-	
 	for (i=0;i<MAX_SPRITES;i++)
 	{
 		if (sprite[i].image != NULL)

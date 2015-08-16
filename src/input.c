@@ -42,12 +42,10 @@ void getInput()
 						input.right = 1;
 						break;
 					
-					/* Disable firing, will need it later */
-					/*	
 					case SDLK_SPACE:
 						input.fire = 1;
 						break;
-					*/
+					
 					
 					case SDLK_ESCAPE:
 						exit(0);

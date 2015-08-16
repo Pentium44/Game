@@ -115,6 +115,9 @@ int main(int argc, char *argv[])
 	/* Load the font */
 	game.font = loadFont("font/blackWolf.ttf", 16);
 	
+	/* Draw map */
+	drawMap();
+	
 	/* Intialise the player */
 	initPlayer();
 	
