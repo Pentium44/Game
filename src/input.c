@@ -28,24 +28,28 @@ void getInput()
 				{
 					case SDLK_UP:
 						input.up = 1;
+						input.yaw = NORTH;
 						break;
 					
 					case SDLK_DOWN:
 						input.down = 1;
+						input.yaw = SOUTH;
 						break;
 						
 					case SDLK_LEFT:
 						input.left = 1;
+						input.yaw = WEST;
 						break;
 						
 					case SDLK_RIGHT:
 						input.right = 1;
+						input.yaw = EAST;
 						break;
-					
+					/*
 					case SDLK_SPACE:
 						input.fire = 1;
 						break;
-					
+					*/
 					
 					case SDLK_ESCAPE:
 						exit(0);

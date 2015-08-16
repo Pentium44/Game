@@ -244,10 +244,25 @@ void addBullet(int x, int y)
 static void moveStandardBullet()
 {
 	/* Move the bullet across the screen */
-	self->x += BULLET_SPEED;
+	if(input.yaw == EAST) 
+	{
+		self->x += BULLET_SPEED;
+	}
+	else if(input.yaw == WEST)
+	{
+		self->x -= BULLET_SPEED;
+	}
+	else if(input.yaw == NORTH)
+	{
+		self->y += BULLET_SPEED;
+	}
+	else
+	{
+		self->y -= BULLET_SPEED;
+	}
 	
 	/* Kill the bullet if it moves off the screen */
-	if (self->x >= SCREEN_WIDTH)
+	if (self->x >= SCREEN_WIDTH || self->x <= 0 || self->y >= SCREEN_HEIGHT || self->y <= 0)
 	{
 		self->active = 0;
 	}

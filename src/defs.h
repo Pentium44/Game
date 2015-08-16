@@ -17,6 +17,12 @@
 
 #define ANIM_SPEED 3
 
+/* Yaw definitions */
+#define NORTH 1
+#define EAST 2
+#define SOUTH 3
+#define WEST 4
+
 enum
 {
 	PLAYER_SPRITE,
