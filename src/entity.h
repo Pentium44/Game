@@ -7,7 +7,7 @@ void initPlayer();
 void doPlayer();
 void drawPlayer();
 /* Map gen */
-void drawMapChunk(int x, int y);
+void drawMapChunk(int c, int x, int y);
 void drawMap();
 /* other non-standard entities */
 void addBullet(int, int);

@@ -2,6 +2,7 @@
 #include "structs.h"
 #include "audio.h"
 #include "graphics.h"
+#include "mapgen.h"
 
 Entity player;
 Control input;
@@ -170,8 +171,8 @@ Animation dirtAnim;
 
 static void nullAction(void);
 
-void drawMapChunk(int x, int y)
-{
+void drawMapChunk(int c, int x, int y)
+{	
 	int i = getFreeEntity();
 	
 	if (i == -1)
@@ -185,30 +186,48 @@ void drawMapChunk(int x, int y)
 	entity[i].y = y;
 	entity[i].action = &nullAction;
 	entity[i].draw = &drawStandardEntity;
-	entity[i].sprite = getSprite(DIRT_SPRITE);
+	
+	if(c == DIRT_CHUNK) entity[i].sprite = getSprite(DIRT_SPRITE);
+	if(c == PATH_CHUNK) entity[i].sprite = getSprite(PATH_SPRITE);
+	if(c == TOP_PATH_EDGE_CHUNK) entity[i].sprite = getSprite(TOP_PATH_EDGE_SPRITE);
+	if(c == BOT_PATH_EDGE_CHUNK) entity[i].sprite = getSprite(BOT_PATH_EDGE_SPRITE);
 	
 }
 
 void drawMap() {
 	int ix;
 	int iy;
-	
 	ix = 0;
 	iy = 0;
-	while(1)
+	
+	char *filename = "maps/map01.map";
+	FILE *file = fopen(filename, "r");
+	
+	int i;
+	
+	// check if file is empty.
+	if(file == NULL)
 	{
-		if(ix >= 800) {
+		printf("Error: loading map \"%s\" failed", filename);
+		exit(1);
+	}
+	
+	while ((i = fgetc(file)) != EOF)
+	{
+		int c = charForChunk((char)i);
+		
+		if(c == RETURN_CHUNK || c == ERROR) {
 			iy = iy + 32;
 			ix = 0;
-		}
-	
-		if(iy >= 480) {
-			break;
+			continue;
 		}
 		
-		drawMapChunk(ix, iy);		
+		//printf("Block ID: %d, location: (%d, %d)\n", c, ix, iy);
+		
+		drawMapChunk(c, ix, iy);		
 		ix = ix + 32;
 	}
+	
 }
 
 /*

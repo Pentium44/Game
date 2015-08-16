@@ -23,12 +23,25 @@
 #define SOUTH 3
 #define WEST 4
 
+/* Map chunk types */
+#define DIRT_CHUNK 2
+#define PATH_CHUNK 3
+#define TOP_PATH_EDGE_CHUNK 4
+#define BOT_PATH_EDGE_CHUNK 5
+
+#define RETURN_CHUNK 0
+
+#define ERROR 1
+
 enum
 {
 	PLAYER_SPRITE,
  	BULLET_SPRITE,
   	UFO_SPRITE,
   	DIRT_SPRITE,
+  	PATH_SPRITE,
+  	TOP_PATH_EDGE_SPRITE,
+  	BOT_PATH_EDGE_SPRITE,
 	MAX_SPRITES
 };
 

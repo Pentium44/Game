@@ -109,6 +109,9 @@ void loadAllSprites()
 	loadSprite(PLAYER_SPRITE, "gfx/player.png");
 	loadSprite(BULLET_SPRITE, "gfx/bullet.png");
 	loadSprite(DIRT_SPRITE, "gfx/dirt.png");
+	loadSprite(PATH_SPRITE, "gfx/path.png");
+	loadSprite(TOP_PATH_EDGE_SPRITE, "gfx/top_path_edge.png");
+	loadSprite(BOT_PATH_EDGE_SPRITE, "gfx/bot_path_edge.png");
 	/*loadSprite(UFO_SPRITE, "gfx/enemy.png");*/
 }
 
