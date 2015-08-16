@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 	
 	/* Start up SDL */
 	
-	init("Some Game");
+	init("Maetrox");
 	
 	/* Call the cleanup function when the program exits */
 	atexit(cleanup);
@@ -97,10 +97,10 @@ int main(int argc, char *argv[])
 	loadAllSounds();
 	
 	/* Load animations */
-	loadAnimation("gfx/anim/dirt.dat", &dirtAnim);  
+	//loadAnimation("gfx/anim/dirt.dat", &dirtAnim);  
 	
 	/* Load the font */
-	game.font = loadFont("font/blackWolf.ttf", 16);
+	game.font = loadFont("font/Cabin.ttf", 16);
 	
 	/* Draw map */
 	drawMap();

@@ -1,4 +1,4 @@
-Simple type of multi-directional 2D game.
+Maetrox - Multi-directional 2D game.
 To-do:
   * Multi-directional player sprite (partially done)
   * Player vs wall collision detection (partially done)
