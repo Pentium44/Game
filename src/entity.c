@@ -188,9 +188,9 @@ void drawMapChunk(int c, int x, int y)
 	entity[i].draw = &drawStandardEntity;
 	
 	if(c == DIRT_CHUNK) entity[i].sprite = getSprite(DIRT_SPRITE);
-	if(c == PATH_CHUNK) entity[i].sprite = getSprite(PATH_SPRITE);
-	if(c == TOP_PATH_EDGE_CHUNK) entity[i].sprite = getSprite(TOP_PATH_EDGE_SPRITE);
-	if(c == BOT_PATH_EDGE_CHUNK) entity[i].sprite = getSprite(BOT_PATH_EDGE_SPRITE);
+	if(c == GRASS_CHUNK) entity[i].sprite = getSprite(GRASS_SPRITE);
+	if(c == TOP_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(TOP_DIRT_EDGE_SPRITE);
+	if(c == BOT_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(BOT_DIRT_EDGE_SPRITE);
 	
 }
 

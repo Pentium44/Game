@@ -7,6 +7,10 @@ To-do:
   * Networking support
   * Chat window, speech.
 
+Textures:
+ * Player textures done by iceblue007 (deviantart)
+ * Ground textures, so far, done by me.
+
 Outline from Parallel Realities SDL tut #7. Code rearranged for my needs,
 and built upon.
 
