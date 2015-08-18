@@ -8,6 +8,45 @@ Entity *self;
 
 int collision(int, int, int, int, int, int, int, int);
 
+int doPlayerCollisions() {
+	int i, j;
+	int errorFound = 0;
+
+	/* Check each entity against the rest, skipping over inactive ones */
+	for (i=0;i<MAX_ENTITIES;i++)
+	{
+		if (entity[i].active == 0)
+		{
+			continue;
+		}
+
+		for (j=0;j<MAX_ENTITIES;j++)
+		{
+			/* Don't collide with yourself, inactive entities or entities of the same type */			
+			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type)
+			{
+				continue;
+			}
+			
+			/* test collisions between player and ground wall / fence */
+			if(entity[j].type == TYPE_GROUND_COLLISION) 
+			{
+				if(collision(player.x, player.y, player.sprite->w, player.sprite->h, entity[j].x, entity[j].y, entity[j].sprite->w, entity[j].sprite->h) == 1)
+				{
+					errorFound = ERROR;
+				}
+			}
+		}
+	}
+	
+	if(errorFound == ERROR)
+	{
+		return ERROR;
+	}
+	
+	return OK;
+}
+
 void doCollisions()
 {
 	int i, j;
@@ -23,13 +62,13 @@ void doCollisions()
 		for (j=0;j<MAX_ENTITIES;j++)
 		{
 			/* Don't collide with yourself, inactive entities or entities of the same type */			
-			if (i == j || entity[j].active == 0 || entity[j].type == entity[i].type)
+			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type)
 			{
 				continue;
 			}
 			
 			/* Test the collision */
-			if (collision(entity[i].x, entity[i].y, entity[i].sprite->w, entity[i].sprite->h, entity[j].x, entity[j].y, entity[j].sprite->w, entity[j].sprite->h) == 1)
+			if(collision(entity[i].x, entity[i].y, entity[i].sprite->w, entity[i].sprite->h, entity[j].x, entity[j].y, entity[j].sprite->w, entity[j].sprite->h) == 1)
 			{
 				/* If a collision occured, remove both Entities */
 				entity[j].active = 0;
@@ -52,5 +91,10 @@ int collision(int x0, int y0, int w0, int h0, int x2, int y2, int w1, int h1)
 	int x3 = x2 + w1;
 	int y3 = y2 + h1;
 
-	return !(x1<x2 || x3<x0 || y1<y2 || y3<y0);
+	if(x1<x2 || x3<x0 || y1<y2 || y3<y0)
+	{
+		return ERROR;
+	}
+	
+	return OK;
 }

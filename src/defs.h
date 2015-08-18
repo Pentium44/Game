@@ -23,7 +23,10 @@
 #define SOUTH 3
 #define WEST 4
 
-/* Map chunk types */
+/* 
+   Map chunk types
+   Start with 2 because of usage of ERROR.
+*/
 #define DIRT_CHUNK 2
 #define GRASS_CHUNK 3
 #define TOP_DIRT_EDGE_CHUNK 4
@@ -31,6 +34,7 @@
 
 #define RETURN_CHUNK 0
 
+#define OK 0
 #define ERROR 1
 
 enum
@@ -58,5 +62,6 @@ enum
 {
 	TYPE_BULLET,
  	TYPE_ENEMY,
- 	TYPE_GROUND
+ 	TYPE_GROUND,
+ 	TYPE_GROUND_COLLISION
 };

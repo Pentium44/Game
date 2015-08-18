@@ -3,6 +3,7 @@
 #include "audio.h"
 #include "graphics.h"
 #include "mapgen.h"
+#include "collisions.h"
 
 Entity player;
 Control input;
@@ -116,6 +117,14 @@ void doPlayer()
 		{
 			player.y = 0;
 		}
+		
+		/* Don't allow the player to move through walls or fences */
+		int collision = doPlayerCollisions();
+		
+		if (collision == ERROR) 
+		{
+			player.y = player.y;
+		}
 	}
 	
 	if (input.down == 1)
@@ -129,6 +138,14 @@ void doPlayer()
 		if (player.y + player.sprite->h >= SCREEN_HEIGHT)
 		{
 			player.y = SCREEN_HEIGHT - (player.sprite->h + 1);
+		}
+		
+		/* Don't allow the player to move through walls or fences */
+		int collision = doPlayerCollisions();
+		
+		if (collision == ERROR) 
+		{
+			player.y = player.y;
 		}
 	}
 	
@@ -144,6 +161,14 @@ void doPlayer()
 		{
 			player.x = 0;
 		}
+		
+		/* Don't allow the player to move through walls or fences */
+		int collision = doPlayerCollisions();
+		
+		if (collision == ERROR) 
+		{
+			player.x = player.x;
+		}
 	}
 	
 	if (input.right == 1)
@@ -157,6 +182,14 @@ void doPlayer()
 		if (player.x + player.sprite->w >= SCREEN_WIDTH)
 		{
 			player.x = SCREEN_WIDTH - (player.sprite->w + 1);
+		}
+		
+		/* Don't allow the player to move through walls or fences */
+		int collision = doPlayerCollisions();
+		
+		if (collision == ERROR) 
+		{
+			player.x = player.x;
 		}
 	}
 	
@@ -199,11 +232,10 @@ void drawMapChunk(int c, int x, int y)
 	entity[i].action = &nullAction;
 	entity[i].draw = &drawStandardEntity;
 	
-	if(c == DIRT_CHUNK) entity[i].sprite = getSprite(DIRT_SPRITE);
-	if(c == GRASS_CHUNK) entity[i].sprite = getSprite(GRASS_SPRITE);
-	if(c == TOP_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(TOP_DIRT_EDGE_SPRITE);
-	if(c == BOT_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(BOT_DIRT_EDGE_SPRITE);
-	
+	if(c == DIRT_CHUNK) entity[i].sprite = getSprite(DIRT_SPRITE); entity[i].type = TYPE_GROUND;
+	if(c == GRASS_CHUNK) entity[i].sprite = getSprite(GRASS_SPRITE); entity[i].type = TYPE_GROUND_COLLISION;
+	if(c == TOP_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(TOP_DIRT_EDGE_SPRITE); entity[i].type = TYPE_GROUND;
+	if(c == BOT_DIRT_EDGE_CHUNK) entity[i].sprite = getSprite(BOT_DIRT_EDGE_SPRITE); entity[i].type = TYPE_GROUND;
 }
 
 void drawMap() {
