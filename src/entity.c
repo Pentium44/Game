@@ -89,7 +89,7 @@ void drawStandardEntity()
 
 void initPlayer()
 {
-	player.sprite = getSprite(PLAYER_SPRITE);
+	player.sprite = getSprite(PLAYER_RIGHT_SPRITE);
 	
 	player.x = SCREEN_WIDTH / 2;
 	player.y = SCREEN_HEIGHT / 2;
@@ -108,6 +108,9 @@ void doPlayer()
 	{
 		player.y -= PLAYER_SPEED;
 		
+		/* set directional player sprite */
+		player.sprite = getSprite(PLAYER_UP_SPRITE);
+		
 		/* Don't allow the player to move off the screen */
 		if (player.y < 0)
 		{
@@ -118,6 +121,9 @@ void doPlayer()
 	if (input.down == 1)
 	{
 		player.y += PLAYER_SPEED;
+		
+		/* set directional player sprite */
+		player.sprite = getSprite(PLAYER_DOWN_SPRITE);
 		
 		/* Don't allow the player to move off the screen */
 		if (player.y + player.sprite->h >= SCREEN_HEIGHT)
@@ -130,6 +136,9 @@ void doPlayer()
 	{
 		player.x -= PLAYER_SPEED;
 		
+		/* set directional player sprite */
+		player.sprite = getSprite(PLAYER_LEFT_SPRITE);
+		
 		/* Don't allow the player to move off the screen */
 		if (player.x < 0)
 		{
@@ -140,6 +149,9 @@ void doPlayer()
 	if (input.right == 1)
 	{
 		player.x += PLAYER_SPEED;
+		
+		/* set directional player sprite */
+		player.sprite = getSprite(PLAYER_RIGHT_SPRITE);
 		
 		/* Don't allow the player to move off the screen */
 		if (player.x + player.sprite->w >= SCREEN_WIDTH)

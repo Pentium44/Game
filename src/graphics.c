@@ -106,7 +106,10 @@ void freeSprites()
 
 void loadAllSprites()
 {
-	loadSprite(PLAYER_SPRITE, "gfx/player01-right.png");
+	loadSprite(PLAYER_RIGHT_SPRITE, "gfx/player01-right.png");
+	loadSprite(PLAYER_LEFT_SPRITE, "gfx/player01-left.png");
+	loadSprite(PLAYER_UP_SPRITE, "gfx/player01-up.png");
+	loadSprite(PLAYER_DOWN_SPRITE, "gfx/player01-down.png");
 	//loadSprite(BULLET_SPRITE, "gfx/bullet.png");
 	loadSprite(DIRT_SPRITE, "gfx/dirt.png");
 	loadSprite(GRASS_SPRITE, "gfx/grass.png");
