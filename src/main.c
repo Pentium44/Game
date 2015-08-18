@@ -83,7 +83,6 @@ int main(int argc, char *argv[])
 	int go;
 	
 	/* Start up SDL */
-	
 	init("Maetrox");
 	
 	/* Call the cleanup function when the program exits */
@@ -118,38 +117,34 @@ int main(int argc, char *argv[])
 	addNPC(500, 300);
 	*/
 	
-	/* Loop indefinitely for messages */
+	/* Set start time for FPS and set first frame */
+	game.startTime = SDL_GetTicks();
+	game.framecount = 1;
 	
+	/* Loop indefinitely for messages */
 	while (go == 1)
 	{
 		/* Get the input */
-		
 		getInput();
 		
 		/* Update the player's position */
-		
 		doPlayer();
 		
 		/* Update the entities */
-		
 		doEntities();
 		
 		/* Do the collisions */
-		
 		doCollisions();
 		
 		/* Draw everything */
-		
 		draw();
 		
 		/* Sleep briefly to stop sucking up all the CPU time */
-		
 		delay(frameLimit);
-		
 		frameLimit = SDL_GetTicks() + 16;
+		++game.framecount;
 	}
 	
 	/* Exit the program */
-	
 	exit(0);
 }

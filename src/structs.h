@@ -2,7 +2,8 @@
 
 typedef struct Game
 {
-	int score;
+	int score, fps, framecount;
+	float startTime;
 	SDL_Surface *screen;
 	TTF_Font *font;
 } Game;

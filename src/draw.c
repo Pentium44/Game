@@ -6,6 +6,13 @@
 
 Game game;
 
+float windowFps() {
+	float getTime = SDL_GetTicks() - game.startTime;
+	float calc = (game.framecount/getTime)*1000;
+	
+	return calc;
+}
+
 void draw()
 {
 	char text[20];
@@ -18,7 +25,8 @@ void draw()
 	drawEntities();
 	
 	/* Draw the score */
-	sprintf(text, "SCORE: %05d", game.score);
+	float gameFps = windowFps();
+	sprintf(text, " FPS: %.0f ", gameFps);
 	drawString(text, 100, 10, game.font, 1, 0);
 	
 	/* Draw the player */
