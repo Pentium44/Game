@@ -9,7 +9,7 @@ Entity *self;
 int collision(int, int, int, int, int, int, int, int);
 
 int doPlayerCollisions() {
-	int i, j;
+	int i;
 	int errorFound = 0;
 
 	/* Check each entity against the rest, skipping over inactive ones */
@@ -19,28 +19,21 @@ int doPlayerCollisions() {
 		{
 			continue;
 		}
-
-		for (j=0;j<MAX_ENTITIES;j++)
-		{
-			/* Don't collide with yourself, inactive entities or entities of the same type */			
-			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type)
-			{
-				continue;
-			}
 			
-			/* test collisions between player and ground wall / fence */
-			if(entity[j].type == TYPE_GROUND_COLLISION) 
+		/* test collisions between player and ground wall / fence */
+		if(entity[i].type == TYPE_FENCE || entity[i].type == TYPE_WALL || entity[i].type == TYPE_FENCE) 
+		{
+			printf("Found ground sprite with collision properties.\n");
+			if(collision(entity[i].x, entity[i].y, entity[i].sprite->w, entity[i].sprite->h, player.x, player.y, player.sprite->w, player.sprite->h) == 0)
 			{
-				if(collision(player.x, player.y, player.sprite->w, player.sprite->h, entity[j].x, entity[j].y, entity[j].sprite->w, entity[j].sprite->h) == 1)
-				{
-					errorFound = ERROR;
-				}
+				errorFound = ERROR;
 			}
 		}
 	}
 	
 	if(errorFound == ERROR)
 	{
+		printf("Found collision.\n");
 		return ERROR;
 	}
 	
