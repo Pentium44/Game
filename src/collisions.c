@@ -21,7 +21,7 @@ int doPlayerCollisions() {
 		}
 			
 		/* test collisions between player and ground wall / fence */
-		if(entity[i].type == TYPE_FENCE || entity[i].type == TYPE_WALL || entity[i].type == TYPE_FENCE) 
+		if(entity[i].type == TYPE_FENCE || entity[i].type == TYPE_WALL || entity[i].type == TYPE_BARRIER) 
 		{
 			printf("Found ground sprite with collision properties.\n");
 			if(collision(entity[i].x, entity[i].y, entity[i].sprite->w, entity[i].sprite->h, player.x, player.y, player.sprite->w, player.sprite->h) == 0)

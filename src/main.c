@@ -75,7 +75,10 @@ void cleanup()
 	SDL_Quit();
 }
 
-Animation dirtAnim;
+Animation walkUpAnimation;
+Animation walkDownAnimation;
+Animation walkRightAnimation;
+Animation walkLeftAnimation;
 
 int main(int argc, char *argv[])
 {
@@ -96,7 +99,10 @@ int main(int argc, char *argv[])
 	loadAllSounds();
 	
 	/* Load animations */
-	//loadAnimation("gfx/anim/dirt.dat", &dirtAnim);  
+	loadAnimation("gfx/anim/walk-up.dat", &walkUpAnimation);  
+	loadAnimation("gfx/anim/walk-down.dat", &walkDownAnimation);  
+	loadAnimation("gfx/anim/walk-right.dat", &walkRightAnimation);  
+	loadAnimation("gfx/anim/walk-left.dat", &walkLeftAnimation);  
 	
 	/* Load the font */
 	game.font = loadFont("font/Cabin.ttf", 16);
@@ -125,7 +131,10 @@ int main(int argc, char *argv[])
 	while (go == 1)
 	{
 		/* Get the input */
-		getInput();
+		if(game.walkAnimationCount == 0)
+		{
+			getInput();
+		}
 		
 		/* Update the player's position */
 		doPlayer();
@@ -141,7 +150,7 @@ int main(int argc, char *argv[])
 		
 		/* Sleep briefly to stop sucking up all the CPU time */
 		delay(frameLimit);
-		frameLimit = SDL_GetTicks() + 16;
+		frameLimit = SDL_GetTicks() + VSYNC_TIMING;
 		++game.framecount;
 	}
 	

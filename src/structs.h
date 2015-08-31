@@ -2,7 +2,7 @@
 
 typedef struct Game
 {
-	int score, fps, framecount;
+	int score, fps, framecount, walkAnimationCount, playerWalkDirection;
 	float startTime;
 	SDL_Surface *screen;
 	TTF_Font *font;

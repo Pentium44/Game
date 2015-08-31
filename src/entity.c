@@ -7,6 +7,7 @@
 
 Entity player;
 Control input;
+Game game;
 Entity *self, entity[MAX_ENTITIES];
 
 SDL_Surface *getSprite(int index);
@@ -96,6 +97,43 @@ void initPlayer()
 	player.y = SCREEN_HEIGHT / 2;
 }
 
+Animation walkDownAnimation;
+Animation walkUpAnimation;
+Animation walkLeftAnimation;
+Animation walkRightAnimation;
+
+void doPlayerWalkAnimation(Animation *anim)
+{	
+	drawAnimation(anim, player.x, player.y);
+	doAnimation(anim);
+		
+	int direction = input.yaw;
+		
+	if(direction == NORTH)
+	{
+		player.y -= PLAYER_SPEED;
+	}
+	else if(direction == SOUTH)
+	{
+		player.y += PLAYER_SPEED;
+	}
+	else if(direction == EAST)
+	{
+		player.x += PLAYER_SPEED;
+	}
+	else
+	{
+		player.x -= PLAYER_SPEED;
+	}
+	
+	game.walkAnimationCount++;
+
+	if(game.walkAnimationCount == 4)
+	{
+		game.walkAnimationCount = 0;
+	}
+}
+
 void doPlayer()
 {
 	int collision;
@@ -115,7 +153,7 @@ void doPlayer()
 		
 		if (collision != ERROR) 
 		{
-			player.y -= PLAYER_SPEED;	
+			doPlayerWalkAnimation(&walkUpAnimation);
 		}
 		
 		/* set directional player sprite */
@@ -135,7 +173,7 @@ void doPlayer()
 		
 		if (collision != ERROR) 
 		{
-			player.y += PLAYER_SPEED;	
+			doPlayerWalkAnimation(&walkDownAnimation);
 		}
 		
 		/* set directional player sprite */
@@ -145,14 +183,6 @@ void doPlayer()
 		if (player.y + player.sprite->h >= SCREEN_HEIGHT)
 		{
 			player.y = SCREEN_HEIGHT - (player.sprite->h + 1);
-		}
-		
-		/* Don't allow the player to move through walls or fences */
-		int collision = doPlayerCollisions();
-		
-		if (collision == ERROR) 
-		{
-			player.y = player.y;
 		}
 	}
 	
@@ -164,7 +194,7 @@ void doPlayer()
 		
 		if (collision != ERROR) 
 		{
-			player.x -= PLAYER_SPEED;
+			doPlayerWalkAnimation(&walkLeftAnimation);
 		}
 		
 		/* set directional player sprite */
@@ -175,14 +205,6 @@ void doPlayer()
 		{
 			player.x = 0;
 		}
-		
-		/* Don't allow the player to move through walls or fences */
-		int collision = doPlayerCollisions();
-		
-		if (collision == ERROR) 
-		{
-			player.x = player.x;
-		}
 	}
 	
 	if (input.right == 1)
@@ -192,7 +214,7 @@ void doPlayer()
 		
 		if (collision != ERROR) 
 		{
-			player.x += PLAYER_SPEED;	
+			doPlayerWalkAnimation(&walkRightAnimation);
 		}
 		
 		/* set directional player sprite */
@@ -202,14 +224,6 @@ void doPlayer()
 		if (player.x + player.sprite->w >= SCREEN_WIDTH)
 		{
 			player.x = SCREEN_WIDTH - (player.sprite->w + 1);
-		}
-		
-		/* Don't allow the player to move through walls or fences */
-		collision = doPlayerCollisions();
-		
-		if (collision == ERROR) 
-		{
-			player.x = player.x;
 		}
 	}
 	
@@ -227,7 +241,17 @@ void doPlayer()
 void drawPlayer()
 {
 	/* Draw the image in the player structure */
-	drawImage(player.sprite, player.x, player.y);
+	if(game.walkAnimationCount != 0)
+	{
+		if(input.yaw == NORTH) drawAnimation(&walkUpAnimation, player.x, player.y);
+		if(input.yaw == SOUTH) drawAnimation(&walkDownAnimation, player.x, player.y);
+		if(input.yaw == EAST) drawAnimation(&walkRightAnimation, player.x, player.y);
+		if(input.yaw == WEST) drawAnimation(&walkLeftAnimation, player.x, player.y); 
+	}
+	else
+	{
+		drawImage(player.sprite, player.x, player.y);
+	}
 }
 
 Animation dirtAnim;
