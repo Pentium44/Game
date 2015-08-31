@@ -1,8 +1,8 @@
 Maetrox - Multi-directional 2D game.
 To-do:
-  * Multi-directional player sprite (partially done)
-  * Player vs wall collision detection (partially done, working through differently in future)
-  * Remove those nasty textures (finished - sorta)
+  * Multi-directional player sprite (finished)
+  * Player vs wall collision detection (partial, will re-work next)
+  * Remove those nasty textures
   * Walking animations (finished, rough. Will clean up shortly)
   * Wall collision sounds
   * Networking support
