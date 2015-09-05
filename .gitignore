@@ -1,4 +1,5 @@
 config.mk
+game
 *.com
 *.class
 *.dll
