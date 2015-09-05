@@ -10,7 +10,7 @@ all: $(PROG)
 
 # linking the program.
 $(PROG): $(OBJS)
-	$(CC) -o $(PROG) $(OBJS) $(LDFLAGS)
+	$(CC) $(LDFLAGS) -o $(PROG) $(OBJS) $(LDFLAGS)
 
 # cleaning everything that can be automatically recreated with "make".
 clean:

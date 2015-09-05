@@ -12,7 +12,7 @@ SDL_CFLAGS = $(sdl-config --cflags)
 SDL_LIBS   = $(sdl-config --libs)
 
 CFLAGS  += \$(SDL_CFLAGS)
-LDFLAGS += \$(SDL_LIBS)
+LDFLAGS += \$(SDL_LIBS) -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 
 CC ?= cc" > config.mk
 
