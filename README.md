@@ -1,4 +1,10 @@
 Maetrox - Multi-directional 2D game.
+
+How to compile:
+	You need to have SDL installed, specifically the image, mixer, and ttf modules.
+	
+	Simply run the 'configure' shell script then type 'make'. A binary named 'game' will be created.
+
 To-do:
   * Multi-directional player sprite (finished)
   * Player vs wall collision detection (partial, will re-work next)

@@ -1,0 +1,18 @@
+#! /bin/sh
+
+if ! which sdl-config >/dev/null
+then
+	echo 'SDL does not seem to be installed! Exiting.'
+	return 1
+fi
+
+echo "# automatically generated build configuration
+
+SDL_CFLAGS = $(sdl-config --cflags)
+SDL_LIBS   = $(sdl-config --libs)
+
+CFLAGS  += \$(SDL_CFLAGS)
+LDFLAGS += \$(SDL_LIBS)
+
+CC ?= cc" > config.mk
+

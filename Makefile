@@ -1,23 +1,21 @@
-CFLAGS = -Wall -Werror
-LFLAGS = `sdl-config --libs` -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-OBJS = audio.o collisions.o draw.o entity.o font.o input.o graphics.o main.o mapgen.o
-PROG = game
-CXX = gcc
+.POSIX:  ;
+
+include config.mk
+
+OBJS    = src/audio.o src/collisions.o src/draw.o src/entity.o src/font.o src/input.o src/graphics.o src/main.o src/mapgen.o
+PROG    = game
 
 # top-level rule to create the program.
 all: $(PROG)
 
-# compiling other source files.
-%.o: src/%.c src/%.h src/defs.h src/structs.h
-	$(CXX) $(CFLAGS) -c -s $<
-
 # linking the program.
 $(PROG): $(OBJS)
-	$(CXX) $(OBJS) -o $(PROG) $(LFLAGS)
+	$(CC) -o $(PROG) $(OBJS) $(LDFLAGS)
 
 # cleaning everything that can be automatically recreated with "make".
 clean:
-	rm $(PROG) *.o
+	rm -f $(PROG) $(OBJS)
 
 maprenderer: 
-	gcc -o maprenderer util/maprenderer.c 
+	$(CC) -o maprenderer util/maprenderer.c 
+
