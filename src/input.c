@@ -3,6 +3,15 @@
 
 Control input;
 
+// Keep player from holding multiple walking keys down
+void setKeyDownOff()
+{
+	input.up = 0;
+	input.down = 0;
+	input.right = 0;
+	input.left = 0;
+}
+
 void getInput()
 {
 	SDL_Event event;
@@ -27,21 +36,25 @@ void getInput()
 				switch (event.key.keysym.sym)
 				{
 					case SDLK_UP:
+						setKeyDownOff();
 						input.up = 1;
 						input.yaw = NORTH;
 						break;
 					
 					case SDLK_DOWN:
+						setKeyDownOff();
 						input.down = 1;
 						input.yaw = SOUTH;
 						break;
 						
 					case SDLK_LEFT:
+						setKeyDownOff();
 						input.left = 1;
 						input.yaw = WEST;
 						break;
 						
 					case SDLK_RIGHT:
+						setKeyDownOff();
 						input.right = 1;
 						input.yaw = EAST;
 						break;

@@ -24,7 +24,7 @@ void loadSound(int index, char *name)
 	}
 }
 
-void playSound(index)
+void playSound(int index)
 {
 	/* Play the sound on the first free channel and only play it once */
 	
