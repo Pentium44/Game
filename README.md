@@ -5,11 +5,12 @@ How to compile:
   * Simply run the 'configure' shell script then type 'make'. A binary named 'game' will be created.
 
 To-do:
-  * Multi-directional player sprite (finished)
+  * Multi-directional animated player sprite (finished)
   * Player vs wall collision detection (partial, will re-work next)
-  * Remove those nasty textures
-  * Walking animations (finished, rough. Will clean up shortly)
-  * Wall collision sounds
+  * Remove those nasty textures (Partially finished)
+  * Walking animations (finished)
+  * SDL font library incorporated into the engine (finished)
+  * Sounds (Working but not operational)
   * Networking support
   * Chat window, speech.
 
