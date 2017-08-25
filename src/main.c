@@ -16,6 +16,7 @@ Sound sound[MAX_SOUNDS];
 
 void init(char *title)
 {
+	
 	/* Initialise SDL */
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0)
 	{
@@ -84,6 +85,10 @@ int main(int argc, char *argv[])
 {
 	unsigned int frameLimit = SDL_GetTicks() + 16;
 	int go;
+	
+	/* Set some player variables */
+	input.aspeed = 5;
+	input.pspeed = 1;
 	
 	/* Start up SDL */
 	init("Maetrox");

@@ -58,6 +58,12 @@ void getInput()
 						input.right = 1;
 						input.yaw = EAST;
 						break;
+						
+					case SDLK_LSHIFT:
+						input.aspeed = 3;
+						input.pspeed = 2;
+						break;
+						
 					/*
 					case SDLK_SPACE:
 						input.fire = 1;
@@ -90,6 +96,11 @@ void getInput()
 						
 					case SDLK_RIGHT:
 						input.right = 0;
+						break;
+						
+					case SDLK_LSHIFT:	
+						input.aspeed = 5;
+						input.pspeed = 1;
 						break;
 						
 					case SDLK_SPACE:

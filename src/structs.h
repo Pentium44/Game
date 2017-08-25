@@ -29,7 +29,7 @@ typedef struct Entity
 
 typedef struct Control
 {
-	int yaw, up, down, left, right, fire;
+	int yaw, up, down, left, right, fire, aspeed, pspeed;
 } Control;
 
 typedef struct Animation  

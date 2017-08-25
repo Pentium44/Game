@@ -8,16 +8,11 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 480
-
 #define MAX_ENTITIES 975
 #define MAX_RELOAD_TIME 20
-
 #define VSYNC_TIMING 17 // 60 fps
 //#define VSYNC_TIMING 34 // 30 fps
-#define PLAYER_SPEED 3
 #define BULLET_SPEED 10
-
-#define ANIM_SPEED 3
 
 /* Yaw definitions */
 #define NORTH 1

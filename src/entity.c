@@ -111,19 +111,19 @@ void doPlayerWalkAnimation(Animation *anim)
 		
 	if(direction == NORTH)
 	{
-		player.y -= PLAYER_SPEED;
+		player.y -= input.pspeed;
 	}
 	else if(direction == SOUTH)
 	{
-		player.y += PLAYER_SPEED;
+		player.y += input.pspeed;
 	}
 	else if(direction == EAST)
 	{
-		player.x += PLAYER_SPEED;
+		player.x += input.pspeed;
 	}
 	else
 	{
-		player.x -= PLAYER_SPEED;
+		player.x -= input.pspeed;
 	}
 	
 	game.walkAnimationCount++;

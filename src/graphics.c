@@ -4,6 +4,7 @@
 
 Sprite sprite[MAX_SPRITES];
 Game game;
+Control input;
 
 SDL_Surface *loadImage(char *name);
 
@@ -172,7 +173,7 @@ void loadAnimation(char *name, Animation *anim)
       
     /* Set the animation counter */  
       
-    anim->counter = ANIM_SPEED;  
+    anim->counter = input.aspeed;  
 } 
 
 void freeAnimation(Animation *anim)  
@@ -208,7 +209,7 @@ void doAnimation(Animation *anim)
             anim->frameIndex = 0;  
         }  
           
-        anim->counter = ANIM_SPEED;  
+        anim->counter = input.aspeed;  
     }  
 }
 
