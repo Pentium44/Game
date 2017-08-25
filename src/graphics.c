@@ -107,15 +107,18 @@ void freeSprites()
 
 void loadAllSprites()
 {
-	loadSprite(PLAYER_RIGHT_SPRITE, "gfx/player01-right.png");
-	loadSprite(PLAYER_LEFT_SPRITE, "gfx/player01-left.png");
-	loadSprite(PLAYER_UP_SPRITE, "gfx/player01-up.png");
-	loadSprite(PLAYER_DOWN_SPRITE, "gfx/player01-down.png");
+	loadSprite(PLAYER_RIGHT_SPRITE, "gfx/player/player01-right.png");
+	loadSprite(PLAYER_LEFT_SPRITE, "gfx/player/player01-left.png");
+	loadSprite(PLAYER_UP_SPRITE, "gfx/player/player01-up.png");
+	loadSprite(PLAYER_DOWN_SPRITE, "gfx/player/player01-down.png");
 	//loadSprite(BULLET_SPRITE, "gfx/bullet.png");
-	loadSprite(DIRT_SPRITE, "gfx/dirt.png");
-	loadSprite(GRASS_SPRITE, "gfx/grass.png");
-	loadSprite(TOP_DIRT_EDGE_SPRITE, "gfx/top_dirt_edge.png");
-	loadSprite(BOT_DIRT_EDGE_SPRITE, "gfx/bot_dirt_edge.png");
+	loadSprite(DIRT_SPRITE, "gfx/terrain/dirt.png");
+	loadSprite(GRASS_SPRITE, "gfx/terrain/grass.png");
+	loadSprite(DIRT_TOP_EDGE_SPRITE, "gfx/terrain/dirt_top_edge.png");
+	loadSprite(DIRT_BOT_EDGE_SPRITE, "gfx/terrain/dirt_bot_edge.png");
+	loadSprite(STEEL_WALL_SIDE_SPRITE, "gfx/terrain/steel_wall_side.png");
+	loadSprite(STEEL_WALL_FRONT_SPRITE, "gfx/terrain/steel_wall_front.png");
+	loadSprite(STEEL_WALL_BLCORNER_SPRITE, "gfx/terrain/steel_wall_blcorner.png");
 	/*loadSprite(UFO_SPRITE, "gfx/enemy.png");*/
 }
 

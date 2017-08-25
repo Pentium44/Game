@@ -288,15 +288,33 @@ void drawMapChunk(int c, int x, int y)
 		entity[i].type = TYPE_GROUND;
 	}
 	
-	if(c == TOP_DIRT_EDGE_CHUNK) 
+	if(c == DIRT_TOP_EDGE_CHUNK) 
 	{ 
-		entity[i].sprite = getSprite(TOP_DIRT_EDGE_SPRITE); 
+		entity[i].sprite = getSprite(DIRT_TOP_EDGE_SPRITE); 
 		entity[i].type = TYPE_GROUND;
 	}
 	
-	if(c == BOT_DIRT_EDGE_CHUNK)
+	if(c == DIRT_BOT_EDGE_CHUNK)
 	{
-		entity[i].sprite = getSprite(BOT_DIRT_EDGE_SPRITE); 
+		entity[i].sprite = getSprite(DIRT_BOT_EDGE_SPRITE); 
+		entity[i].type = TYPE_GROUND;
+	}
+	
+	if(c == STEEL_WALL_SIDE_CHUNK)
+	{
+		entity[i].sprite = getSprite(STEEL_WALL_SIDE_SPRITE); 
+		entity[i].type = TYPE_GROUND;
+	}
+	
+	if(c == STEEL_WALL_FRONT_CHUNK)
+	{
+		entity[i].sprite = getSprite(STEEL_WALL_FRONT_SPRITE); 
+		entity[i].type = TYPE_GROUND;
+	}
+	
+	if(c == STEEL_WALL_BLCORNER_CHUNK)
+	{
+		entity[i].sprite = getSprite(STEEL_WALL_BLCORNER_SPRITE); 
 		entity[i].type = TYPE_GROUND;
 	}
 }
