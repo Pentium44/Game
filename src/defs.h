@@ -58,6 +58,8 @@ enum
 enum
 {
 	BULLET_SOUND,
+	STEP_GRASS_L_SOUND,
+	STEP_GRASS_R_SOUND,
  	MAX_SOUNDS
 };
 

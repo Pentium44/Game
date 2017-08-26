@@ -23,9 +23,10 @@ int doPlayerCollisions() {
 		/* test collisions between player and ground wall / fence */
 		if(entity[i].type == TYPE_FENCE || entity[i].type == TYPE_WALL || entity[i].type == TYPE_BARRIER) 
 		{
-			printf("Found ground sprite with collision properties.\n");
 			if(collision(entity[i].x, entity[i].y, entity[i].sprite->w, entity[i].sprite->h, player.x, player.y, player.sprite->w, player.sprite->h) == 0)
 			{
+				//printf("Player (%d,%d) found wall at (%d,%d)\n", player.x, player.y, entity[i].x, entity[i].y);
+				wallDismount(entity[i].x, entity[i].y, player.x, player.y);
 				errorFound = ERROR;
 			}
 		}
@@ -33,7 +34,6 @@ int doPlayerCollisions() {
 	
 	if(errorFound == ERROR)
 	{
-		printf("Found collision.\n");
 		return ERROR;
 	}
 	
@@ -47,7 +47,7 @@ void doCollisions()
 	/* Check each entity against the rest, skipping over inactive ones */
 	for (i=0;i<MAX_ENTITIES;i++)
 	{
-		if (entity[i].active == 0)
+		if (entity[i].active == 0 || entity[i].type == TYPE_WALL)
 		{
 			continue;
 		}
@@ -55,8 +55,9 @@ void doCollisions()
 		for (j=0;j<MAX_ENTITIES;j++)
 		{
 			/* Don't collide with yourself, inactive entities or entities of the same type */			
-			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type)
+			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type || entity[j].type == TYPE_WALL)
 			{
+				//printf("Skipping entity [%d] Type: %d\n", j, entity[j].type);
 				continue;
 			}
 			
@@ -71,6 +72,43 @@ void doCollisions()
 				game.score += 100;
 			}
 		}
+	}
+}
+
+/* 
+  
+ Simple function to keep player from getting stuck in wall like structures
+ 
+ NOTE: This function is a work in progress. It works better than having
+ segfaults in the program.
+
+*/
+
+void wallDismount(int wx, int wy, int px, int py)
+{
+	if((wx > px) && (wy > py))
+	{
+		//printf("Moving player -1 on the Y axis\n");
+		player.y -= 1;
+		return;
+	}
+	else if((wx < px) && (wy < py)) 
+	{
+		//printf("Moving player +1 on the Y axis\n");
+		player.y += 1;
+		return;
+	}
+	else if((wy < py) && (wx > px))
+	{
+		//printf("Moving player -1 on the X axis\n");
+		player.x -= 1;
+		return;
+	}
+	else if((wy > py) && (wx < px))
+	{
+		//printf("Moving player +1 on the X axis\n");
+		player.x += 1;
+		return;
 	}
 }
 

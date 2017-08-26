@@ -6,7 +6,7 @@ How to compile:
 
 To-do:
   * Multi-directional animated player sprite (finished)
-  * Player vs wall collision detection (partial, will re-work next)
+  * Player vs wall collision detection (Working, in dev)
   * Remove those nasty textures (Partially finished)
   * Walking animations (finished)
   * SDL font library incorporated into the engine (finished)
@@ -17,6 +17,9 @@ To-do:
 Textures:
  * Player textures done by iceblue007 (deviantart)
  * Ground textures, so far, done by me.
+ 
+Audio:
+ * Walking sound effects made by Yo Frankie! (Blender Foundation)
 
 Outline from Parallel Realities SDL tut #7. Code rearranged for my needs,
 and built upon.

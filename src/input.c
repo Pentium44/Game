@@ -60,7 +60,7 @@ void getInput()
 						break;
 						
 					case SDLK_LSHIFT:
-						input.aspeed = 3;
+						input.aspeed = 6;
 						input.pspeed = 2;
 						break;
 						
@@ -99,7 +99,7 @@ void getInput()
 						break;
 						
 					case SDLK_LSHIFT:	
-						input.aspeed = 5;
+						input.aspeed = 10;
 						input.pspeed = 1;
 						break;
 						

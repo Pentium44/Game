@@ -1,6 +1,7 @@
 #include "structs.h"
 #include "graphics.h"
 #include "draw.h"
+#include "audio.h"
 
 Sprite sprite[MAX_SPRITES];
 Game game;
@@ -202,11 +203,22 @@ void freeAnimation(Animation *anim)
 void doAnimation(Animation *anim)  
 {  
     anim->counter--;  
+ 
       
     if (anim->counter <= 0)  
     {  
         anim->frameIndex++;  
-          
+        
+        // Slip in walking sounds here
+        if (anim->frameIndex == 1)
+        {
+			playSound(STEP_GRASS_L_SOUND);
+		}
+		else if (anim->frameIndex == 3)
+		{
+			playSound(STEP_GRASS_R_SOUND);
+		}
+        
         if (anim->frameIndex == anim->frameCount)  
         {  
             anim->frameIndex = 0;  
@@ -214,6 +226,7 @@ void doAnimation(Animation *anim)
           
         anim->counter = input.aspeed;  
     }  
+    
 }
 
 void drawAnimation(Animation *anim, int x, int y)  

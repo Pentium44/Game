@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 	int go;
 	
 	/* Set some player variables */
-	input.aspeed = 5;
+	input.aspeed = 10;
 	input.pspeed = 1;
 	
 	/* Start up SDL */

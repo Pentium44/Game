@@ -41,6 +41,8 @@ void playSound(int index)
 void loadAllSounds()
 {
 	loadSound(BULLET_SOUND, "sound/plasma.ogg");
+	loadSound(STEP_GRASS_L_SOUND, "sound/step_grass_l.ogg");
+	loadSound(STEP_GRASS_R_SOUND, "sound/step_grass_r.ogg");
 }
 
 void freeSounds()

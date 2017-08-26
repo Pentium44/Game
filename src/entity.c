@@ -303,19 +303,19 @@ void drawMapChunk(int c, int x, int y)
 	if(c == STEEL_WALL_SIDE_CHUNK)
 	{
 		entity[i].sprite = getSprite(STEEL_WALL_SIDE_SPRITE); 
-		entity[i].type = TYPE_GROUND;
+		entity[i].type = TYPE_WALL;
 	}
 	
 	if(c == STEEL_WALL_FRONT_CHUNK)
 	{
 		entity[i].sprite = getSprite(STEEL_WALL_FRONT_SPRITE); 
-		entity[i].type = TYPE_GROUND;
+		entity[i].type = TYPE_WALL;
 	}
 	
 	if(c == STEEL_WALL_BLCORNER_CHUNK)
 	{
 		entity[i].sprite = getSprite(STEEL_WALL_BLCORNER_SPRITE); 
-		entity[i].type = TYPE_GROUND;
+		entity[i].type = TYPE_WALL;
 	}
 }
 
