@@ -9,7 +9,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 480
 #define MAX_ENTITIES 975
-#define MAX_RELOAD_TIME 20
+#define MAX_RELOAD_TIME 35
 #define VSYNC_TIMING 17 // 60 fps
 //#define VSYNC_TIMING 34 // 30 fps
 #define BULLET_SPEED 10

@@ -64,12 +64,11 @@ void getInput()
 						input.pspeed = 2;
 						break;
 						
-					/*
+					
 					case SDLK_SPACE:
 						input.fire = 1;
 						break;
-					*/
-					
+										
 					case SDLK_ESCAPE:
 						exit(0);
 						break;

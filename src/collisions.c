@@ -44,18 +44,21 @@ void doCollisions()
 {
 	int i, j;
 
-	/* Check each entity against the rest, skipping over inactive ones */
+	/* Check each entity against the rest, skipping over inactive ones or ground tiles */
 	for (i=0;i<MAX_ENTITIES;i++)
 	{
-		if (entity[i].active == 0 || entity[i].type == TYPE_WALL)
+		if (entity[i].active == 0 || entity[i].type == TYPE_WALL || entity[i].type == TYPE_GROUND)
 		{
 			continue;
 		}
 
 		for (j=0;j<MAX_ENTITIES;j++)
 		{
-			/* Don't collide with yourself, inactive entities or entities of the same type */			
-			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type || entity[j].type == TYPE_WALL)
+			/* 
+			   Don't collide with yourself, inactive entities, ground 
+			   entities, wall entities, or entities of the same type 
+			*/			
+			if(i == j || entity[j].active == 0 || entity[j].type == entity[i].type || entity[j].type == TYPE_WALL || entity[j].type == TYPE_GROUND)
 			{
 				//printf("Skipping entity [%d] Type: %d\n", j, entity[j].type);
 				continue;

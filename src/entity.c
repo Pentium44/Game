@@ -229,8 +229,8 @@ void doPlayer()
 	
 	if (input.fire == 1)
 	{
-		/* You can only fire when the thinkTime is 0 or less */
-		if (player.thinkTime <= 0)
+		/* You can only fire when the thinkTime is 0 or less or when input factive is 0 */
+		if (player.thinkTime <= 0 && input.factive == 0)
 		{
 			addBullet(player.x + player.sprite->w, player.y + (player.sprite->h / 2));
 			player.thinkTime = MAX_RELOAD_TIME;
@@ -361,7 +361,7 @@ void drawMap() {
 
 */
 
-static void moveStandardBullet(void);
+static void moveStandardBullet();
 
 void addBullet(int x, int y)
 {
@@ -373,6 +373,9 @@ void addBullet(int x, int y)
 		
 		return;
 	}
+	
+	input.byaw = input.yaw;
+	input.factive = 1;
 	
 	entity[i].x = x;
 	entity[i].y = y;
@@ -388,27 +391,29 @@ void addBullet(int x, int y)
 static void moveStandardBullet()
 {
 	/* Move the bullet across the screen */
-	if(input.yaw == EAST) 
+	
+	if(input.byaw == EAST) 
 	{
 		self->x += BULLET_SPEED;
 	}
-	else if(input.yaw == WEST)
+	else if(input.byaw == WEST)
 	{
 		self->x -= BULLET_SPEED;
 	}
-	else if(input.yaw == NORTH)
+	else if(input.byaw == NORTH)
 	{
-		self->y += BULLET_SPEED;
+		self->y -= BULLET_SPEED;
 	}
 	else
 	{
-		self->y -= BULLET_SPEED;
+		self->y += BULLET_SPEED;
 	}
 	
 	/* Kill the bullet if it moves off the screen */
 	if (self->x >= SCREEN_WIDTH || self->x <= 0 || self->y >= SCREEN_HEIGHT || self->y <= 0)
 	{
 		self->active = 0;
+		input.factive = 0;
 	}
 }
 

@@ -112,7 +112,7 @@ void loadAllSprites()
 	loadSprite(PLAYER_LEFT_SPRITE, "gfx/player/player01-left.png");
 	loadSprite(PLAYER_UP_SPRITE, "gfx/player/player01-up.png");
 	loadSprite(PLAYER_DOWN_SPRITE, "gfx/player/player01-down.png");
-	//loadSprite(BULLET_SPRITE, "gfx/bullet.png");
+	loadSprite(BULLET_SPRITE, "gfx/bullet.png");
 	loadSprite(DIRT_SPRITE, "gfx/terrain/dirt.png");
 	loadSprite(GRASS_SPRITE, "gfx/terrain/grass.png");
 	loadSprite(DIRT_TOP_EDGE_SPRITE, "gfx/terrain/dirt_top_edge.png");
